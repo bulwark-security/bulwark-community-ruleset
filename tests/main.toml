@@ -1,0 +1,20 @@
+[service]
+admin = true
+remote_state_uri = "redis://127.0.0.1:6379"
+proxy_hops = 1
+
+[thresholds]
+observe_only = true
+
+[[include]]
+path = "../dist/bulwark-pro.toml"
+
+[[resource]]
+route = "/"
+plugins = ["bulwark_pro_default"]
+timeout = 25
+
+[[resource]]
+route = "/*params"
+plugins = ["bulwark_pro_default"]
+timeout = 25

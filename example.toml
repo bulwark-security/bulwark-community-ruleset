@@ -1,0 +1,27 @@
+# This is an example Bulwark configuration file.
+# Launch with:
+# bulwark-cli --log-format ecs ext-processor --config=example.toml 
+[service]
+admin = true
+remote_state_uri = "redis://127.0.0.1:6379"
+proxy_hops = 1
+
+[runtime]
+max_concurrent_requests = 4
+max_plugin_tasks = 4
+
+[thresholds]
+observe_only = false
+
+[[include]]
+path = "dist/bulwark-community.toml"
+
+[[resource]]
+route = "/"
+plugins = ["evil_regex", "size_limit"]
+timeout = 25
+
+[[resource]]
+route = "/*params"
+plugins = ["evil_regex", "size_limit"]
+timeout = 25

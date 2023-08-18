@@ -1,0 +1,10 @@
+# TODO: better example
+[[plugin]]
+ref = "evil_regex"
+path = "plugins/bulwark_community_regex.wasm"
+config = { patterns = ["evil"], location = "all", restrict = 0.75 }
+
+[[plugin]]
+ref = "size_limit"
+path = "plugins/bulwark_community_size_limit.wasm"
+config = { soft_limit = 15728640, hard_limit = 52428800, soft_weight = 0.15, hard_weight = 1.0 }

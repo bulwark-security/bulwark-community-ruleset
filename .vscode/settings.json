@@ -1,0 +1,6 @@
+{
+    "rust-analyzer.linkedProjects": [
+        "./rules/regex/Cargo.toml",
+        "./rules/size-limit/Cargo.toml"
+    ]
+}

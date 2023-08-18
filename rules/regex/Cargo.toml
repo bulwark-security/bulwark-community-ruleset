@@ -1,0 +1,20 @@
+[package]
+name = "bulwark-community-regex"
+version = "0.1.0"
+edition = "2021"
+publish = false
+
+[dependencies]
+bulwark-wasm-sdk = "0.3.0"
+regex = "1.8.4"
+anyhow = "*"
+
+[lib]
+crate-type = ["cdylib"]
+
+[profile.release]
+lto = true
+opt-level = 3
+codegen-units = 1
+panic = "abort"
+strip = "debuginfo"

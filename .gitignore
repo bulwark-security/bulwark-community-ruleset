@@ -1,0 +1,3 @@
+/target
+/rules/**/target
+/dist/plugins/*.wasm
