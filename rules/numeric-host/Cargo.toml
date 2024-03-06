@@ -11,6 +11,7 @@ bulwark-wasm-sdk = "0.3.0"
 anyhow = "*"
 regex = "1.8.4"
 http = "0.2.11"
+lazy_static = "1.4.0"
 
 [dev-dependencies]
 http = "0.2.11"
