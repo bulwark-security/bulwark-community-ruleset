@@ -5,17 +5,18 @@ use regex::Regex;
 
 struct NumericHostPlugin;
 
+lazy_static! {
+    static ref NUMERIC_HOST_REGEX: Regex =
+    Regex::new(r"^((?:(?:[0-9]+|0(x|X)[0-9a-fA-F]+|0(b|B)[0-7]+)\.){0,3}(?:[0-9]+|0(x|X)[0-9a-fA-F]+|0(b|B)[0-7]+)|\[[0-9a-fA-F:]+\])(:[0-9]{1,5})?$")
+        .unwrap();
+}
+
 fn check_numeric_host(req: Request) -> std::result::Result<bool, anyhow::Error> {
     let host = req
         .headers()
         .get("Host")
         .ok_or(anyhow!("Missing Host Header."))?;
 
-    lazy_static! {
-        static ref NUMERIC_HOST_REGEX: Regex =
-        Regex::new(r"^((?:(?:[0-9]+|0(x|X)[0-9a-fA-F]+|0(b|B)[0-7]+)\.){0,3}(?:[0-9]+|0(x|X)[0-9a-fA-F]+|0(b|B)[0-7]+)|\[[0-9a-fA-F:]+\])(:[0-9]{1,5})?$")
-            .unwrap();
-    }
     let match_invalid_host = NUMERIC_HOST_REGEX.find(host.to_str()?);
     Ok(match_invalid_host.is_some())
 }
