@@ -3,17 +3,17 @@ use std::collections::HashMap;
 
 pub struct LongContentType;
 
-/// The maximum length for the Content-Type header before we begin considering it suspicious.
+/// The maximum length for the `Content-Type` header before we begin considering it suspicious.
 const MAX_LEN: i64 = 120;
-/// The maximum excess length for the Content-Type header before we cap the score.
+/// The maximum excess length for the `Content-Type` header before we cap the score.
 const MAX_EXCESS: i64 = 150;
-/// The maximum score for the Content-Type header at the capped length.
+/// The maximum score for the `Content-Type` header at the capped length.
 const MAX_SCORE: f64 = 0.75;
 /// The calculated scale factor to multiply the excess by.
 const SCALE_FACTOR: f64 = MAX_SCORE / MAX_EXCESS as f64;
 
 impl LongContentType {
-    /// Calculates the score for the Content-Type header based on its excess length, if any.
+    /// Calculates the score for the `Content-Type` header based on its excess length, if any.
     fn score_content_type(content_type: &HeaderValue) -> f64 {
         let chars_above_max = Self::chars_above_max(content_type) as f64;
         (chars_above_max * SCALE_FACTOR).min(MAX_SCORE)
