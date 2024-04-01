@@ -8,3 +8,8 @@ config = { patterns = ["evil"], location = "all", restrict = 0.75 }
 ref = "size_limit"
 path = "plugins/bulwark_community_size_limit.wasm"
 config = { soft_limit = 15728640, hard_limit = 52428800, soft_weight = 0.15, hard_weight = 1.0 }
+
+[[plugin]]
+ref = "long_content_type"
+path = "plugins/bulwark_community_long_content_type.wasm"
+config = {}

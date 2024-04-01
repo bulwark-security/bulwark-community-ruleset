@@ -1,7 +1,8 @@
 {
     "rust-analyzer.linkedProjects": [
+        "./rules/long-content-type/Cargo.toml",
+        "./rules/numeric-host/Cargo.toml",
         "./rules/regex/Cargo.toml",
-        "./rules/size-limit/Cargo.toml",
-        "./rules/numeric-host/Cargo.toml"
+        "./rules/size-limit/Cargo.toml"
     ]
 }
